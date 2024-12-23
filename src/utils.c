@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:08:15 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 17:06:41 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/23 19:08:10 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,13 @@ int	argument_validation(char **argv)
 
 void	print_state(t_philosopher *philo, char *state)
 {
-	pthread_mutex_lock(&philo->program->print_mutex);
+	pthread_mutex_lock(&philo->program->death_mutex);
 	if (!philo->program->simulation_finished)
+	{
+		pthread_mutex_lock(&philo->program->print_mutex);
 		printf("%lld %d %s\n", get_elapsed_time(philo->start_time),
 			philo->id, state);
-	pthread_mutex_unlock(&philo->program->print_mutex);
+		pthread_mutex_unlock(&philo->program->print_mutex);
+	}
+	pthread_mutex_unlock(&philo->program->death_mutex);
 }

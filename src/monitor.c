@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:07:19 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 17:06:56 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/23 19:07:27 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	check_death(t_philosopher *philo)
 		pthread_mutex_lock(&philo->program->death_mutex);
 		if (!philo->program->simulation_finished)
 		{
-			print_state(philo, RED "died" RESET);
+			pthread_mutex_lock(&philo->program->print_mutex);
+			printf("%lld %d %s\n",
+				get_elapsed_time(philo->start_time), philo->id, "died");
+			pthread_mutex_unlock(&philo->program->print_mutex);
 			philo->program->simulation_finished = 1;
 			pthread_mutex_unlock(&philo->program->death_mutex);
 			return (1);
