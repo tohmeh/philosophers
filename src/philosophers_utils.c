@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 16:19:57 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/23 19:06:09 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/25 12:55:11 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@ void	take_forks(t_philosopher *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(philo->left_fork);
 		pthread_mutex_lock(philo->right_fork);
+		print_state(philo, "has taken right fork");
+		pthread_mutex_lock(philo->left_fork);
+		print_state(philo, "has taken left fork");
 	}
 	else
 	{
-		pthread_mutex_lock(philo->right_fork);
+		usleep(1000);
 		pthread_mutex_lock(philo->left_fork);
+		print_state(philo, "has taken left fork");
+		pthread_mutex_lock(philo->right_fork);
+		print_state(philo, "has taken right fork");
 	}
-	print_state(philo, "has taken left fork");
-	print_state(philo, "has taken right fork");
 }
 
 void	eat(t_philosopher *philo)
@@ -34,8 +37,8 @@ void	eat(t_philosopher *philo)
 	if (simulation_should_stop(philo))
 	{
 		pthread_mutex_unlock(&philo->program->meals_mutex);
-		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
 		return ;
 	}
 	philo->last_meal_time = get_current_time_ms();
@@ -43,8 +46,8 @@ void	eat(t_philosopher *philo)
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->program->meals_mutex);
 	usleep(philo->program->time_to_eat * 1000);
-	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
 }
 
 int	simulation_should_stop(t_philosopher *philo)

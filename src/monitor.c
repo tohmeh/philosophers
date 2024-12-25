@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:07:19 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/23 19:07:27 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 20:08:35 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	check_death(t_philosopher *philo)
 	pthread_mutex_lock(&philo->program->meals_mutex);
 	current_time = get_current_time_ms();
 	last_meal = philo->last_meal_time;
-	pthread_mutex_unlock(&philo->program->meals_mutex);
 	if (current_time - last_meal > philo->program->time_to_die)
 	{
 		pthread_mutex_lock(&philo->program->death_mutex);
@@ -32,10 +31,12 @@ int	check_death(t_philosopher *philo)
 			pthread_mutex_unlock(&philo->program->print_mutex);
 			philo->program->simulation_finished = 1;
 			pthread_mutex_unlock(&philo->program->death_mutex);
+			pthread_mutex_unlock(&philo->program->meals_mutex);
 			return (1);
 		}
 		pthread_mutex_unlock(&philo->program->death_mutex);
 	}
+	pthread_mutex_unlock(&philo->program->meals_mutex);
 	return (0);
 }
 

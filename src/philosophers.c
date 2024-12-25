@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:06:31 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 17:06:47 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 20:06:39 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ void	*philosopher_routine(void *arg)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
-	if (philo->id % 2)
-		usleep(1000);
 	while (1)
 	{
 		if (simulation_should_stop(philo))
-		{
 			break ;
-		}
 		take_forks(philo);
 		eat(philo);
 		sleeping(philo);

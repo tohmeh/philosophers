@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 15:43:53 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 15:58:14 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 19:23:33 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	create_secondary_mutexes(t_program *program)
 	if (pthread_mutex_init(&program->print_mutex, NULL) != 0
 		|| pthread_mutex_init(&program->death_mutex, NULL) != 0
 		|| pthread_mutex_init(&program->all_ate_enough_mutex, NULL) != 0
-		|| pthread_mutex_init(&program->meals_mutex, NULL) != 0)
+		|| pthread_mutex_init(&program->meals_mutex, NULL) != 0
+		|| pthread_mutex_init(&program->global_mutex, NULL) != 0)
 	{
 		cleanup_mutexes(program);
 		return (0);

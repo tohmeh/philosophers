@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:07:49 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 17:06:17 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 19:23:59 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	cleanup_mutexes(t_program *program)
 	pthread_mutex_destroy(&program->death_mutex);
 	pthread_mutex_destroy(&program->all_ate_enough_mutex);
 	pthread_mutex_destroy(&program->meals_mutex);
+	pthread_mutex_destroy(&program->global_mutex);
 	free(program->forks);
 }
 

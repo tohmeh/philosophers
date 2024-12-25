@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:06:08 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 16:15:22 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 20:21:34 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	init_philosopher(t_philosopher *philo, t_program *program, int i)
 	philo->meals_eaten = 0;
 	philo->id = i + 1;
 	philo->start_time = program->start_time;
-	philo->last_meal_time = get_current_time_ms();
+	philo->last_meal_time = program->start_time;
 }

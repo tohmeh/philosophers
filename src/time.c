@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:02:23 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 17:06:44 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 18:37:41 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ long long	get_current_time_ms(void)
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	return ((long long)(current_time.tv_sec)
-		*1000 + (current_time.tv_usec) / 1000);
+	return ((long long)current_time.tv_sec
+		* 1000LL + (current_time.tv_usec / 1000LL));
 }
 
 void	init_time(t_program *program)

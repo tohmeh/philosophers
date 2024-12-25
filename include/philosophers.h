@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:02:48 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 17:05:22 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/24 19:23:02 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_program
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	all_ate_enough_mutex;
 	pthread_mutex_t	meals_mutex;
+	pthread_mutex_t	global_mutex;
 	pthread_t		*philosophers;
 	t_philosopher	*philo_arr;
 	long long		start_time;
