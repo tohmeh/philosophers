@@ -6,7 +6,7 @@
 /*   By: mtohmeh <mtohmeh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:05:47 by mtohmeh           #+#    #+#             */
-/*   Updated: 2024/12/22 15:55:33 by mtohmeh          ###   ########.fr       */
+/*   Updated: 2024/12/25 13:04:03 by mtohmeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	parse_input(char **argv, int argc, t_program *program)
 		exit (1);
 	}
 	init_program(program, argc, argv);
+	if (program->num_philosophers == 1)
+	{
+		printf("0 1 died");
+		exit(0);
+	}
 }
 
 void	setup_table(t_program *program)
